@@ -8,6 +8,8 @@ Features:
 - adding movies to favorites
 - removing movies from favorites subpage based on their id's
 - all data stored in localstorage with dynamic updates
+- no duplicates allowed filtering method
+- searching on 'Enter'
 
 
 ![image](https://user-images.githubusercontent.com/51762310/215344687-5891ada5-b22f-4da4-98fa-4d556e9f2390.png)
