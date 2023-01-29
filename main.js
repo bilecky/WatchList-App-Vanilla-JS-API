@@ -13,17 +13,17 @@ let favMoviesArr = []
 if (parsedMovies) {
 	favMoviesArr = parsedMovies
 }
-
 function addMovie() {
 	localStorage.setItem('movies', JSON.stringify(favMoviesArr))
 }
 
 async function fetchMovies(e) {
-	const inputVal = searchInput.value
+	let inputVal = searchInput.value
 
 	const response = await fetch(API_URL + inputVal)
-	if (response) {
-		const movie = await response.json()
+	const movie = await response.json()
+	if (movie.Response === 'True') {
+		console.log(movie.Response)
 		const movieExists = favMoviesArr.find(favMovie => favMovie.id === movie.imdbID)
 		if (!movieExists) {
 			favMoviesArr.unshift({
@@ -55,6 +55,7 @@ async function fetchMovies(e) {
 		  </div>
 		</div>`
 	}
+	searchInput.value = ''
 }
 
 searchBtn.addEventListener('click', fetchMovies)

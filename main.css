@@ -49,6 +49,14 @@ a {
 h1 {
 	font-size: 36px;
 }
+.watchlist {
+	border: 1px solid white;
+	padding: 8px 9px;
+	transition: 0.3s transform;
+}
+.watchlist:hover {
+	transform: scale(1.05);
+}
 
 .search__bar {
 	position: absolute;
@@ -121,6 +129,7 @@ img {
 	margin-top: 8px;
 	margin-bottom: 8px;
 	font-size: 14px;
+	align-items: center;
 }
 .type {
 	margin-left: 17px;
@@ -129,12 +138,15 @@ img {
 .movie__about {
 	font-size: 15px;
 }
-.add-btn, .remove-btn {
+.add-btn,
+.remove-btn {
 	display: flex;
 	align-items: center;
 	border: none;
 	background: none;
 	cursor: pointer;
+	font-size: 14px;
+	font-weight: 600;
 }
 i {
 	margin-right: 7px;
@@ -143,12 +155,21 @@ i {
 	font-size: 22px;
 	display: inline-block;
 }
-.no-movies {
+.no-movies,
+.no-fav-movies {
 	margin-top: 50px;
 	text-align: center;
 }
-.no-movies p {
+.no-movies p,
+.no-fav-movies p {
 	display: inline-block;
 	margin-right: 10px;
 	font-size: 22px;
+}
+
+.fa-circle-plus {
+	color: green;
+}
+.fa-circle-minus {
+	color: red;
 }
