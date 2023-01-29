@@ -20,23 +20,23 @@ function addMovie() {
 
 async function fetchMovies(e) {
 	const inputVal = searchInput.value
-  
+
 	const response = await fetch(API_URL + inputVal)
 	if (response) {
-	  const movie = await response.json()
-	  const movieExists = favMoviesArr.find(favMovie => favMovie.id === movie.imdbID)
-	  if (!movieExists) {
-		favMoviesArr.unshift({
-		  title: movie.Title,
-		  poster: movie.Poster,
-		  time: movie.Runtime,
-		  type: movie.Genre,
-		  plot: movie.Plot,
-		  id: movie.imdbID,
-		})
-	  }
-  
-	  moviesBox.innerHTML = `
+		const movie = await response.json()
+		const movieExists = favMoviesArr.find(favMovie => favMovie.id === movie.imdbID)
+		if (!movieExists) {
+			favMoviesArr.unshift({
+				title: movie.Title,
+				poster: movie.Poster,
+				time: movie.Runtime,
+				type: movie.Genre,
+				plot: movie.Plot,
+				id: movie.imdbID,
+			})
+		}
+
+		moviesBox.innerHTML = `
 		<div class="movie__card">
 		  <div class="movie__img">
 			<img src=${movie.Poster} alt="">
@@ -55,12 +55,17 @@ async function fetchMovies(e) {
 		  </div>
 		</div>`
 	}
-  }
+}
 
 searchBtn.addEventListener('click', fetchMovies)
 document.addEventListener('click', e => {
 	const target = e.target.closest('.add-btn')
 	if (target) {
 		target.addEventListener('click', addMovie)
+	}
+})
+searchInput.addEventListener('keydown', e => {
+	if (e.keyCode === 13) {
+		fetchMovies()
 	}
 })
