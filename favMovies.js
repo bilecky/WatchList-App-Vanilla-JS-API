@@ -42,6 +42,7 @@ document.addEventListener('click', e => {
 	if (target) {
 		const movieId = target.closest('.movie__card').id
 		favMoviesArr = favMoviesArr.filter(movie => movie.id !== movieId)
+		
 		localStorage.setItem('movies', JSON.stringify(favMoviesArr))
 		favMovies.innerHTML = ''
 		favMoviesArr.forEach(movie => {

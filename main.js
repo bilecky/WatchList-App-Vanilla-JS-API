@@ -20,37 +20,42 @@ function addMovie() {
 
 async function fetchMovies(e) {
 	const inputVal = searchInput.value
-
+  
 	const response = await fetch(API_URL + inputVal)
 	if (response) {
-		const movie = await response.json()
-
+	  const movie = await response.json()
+	  const movieExists = favMoviesArr.find(favMovie => favMovie.id === movie.imdbID)
+	  if (!movieExists) {
 		favMoviesArr.unshift({
-			title: movie.Title,
-			poster: movie.Poster,
-			time: movie.Runtime,
-			type: movie.Genre,
-			plot: movie.Plot,
-			id: movie.imdbID,
+		  title: movie.Title,
+		  poster: movie.Poster,
+		  time: movie.Runtime,
+		  type: movie.Genre,
+		  plot: movie.Plot,
+		  id: movie.imdbID,
 		})
-		console.log(favMoviesArr)
-
-		moviesBox.innerHTML = ` <div class="movie__card">
- <div class="movie__img">
-  <img src=${movie.Poster} alt="">
- </div>
- <div class="movie__info">
-  <h3 class="movie__title">${movie.Title}</h3>
-  <div class="movie__details">
-   <p class="time">${movie.Runtime}</p>
-   <p class="type">${movie.Genre}</p><button class="add-btn"><i class="fa-solid fa-circle-plus"></i>Add to
-    watchlist</button>
-  </div>
-  <div class="movie__about">${movie.Plot}</div>
- </div>
-</div>`
+	  }
+  
+	  moviesBox.innerHTML = `
+		<div class="movie__card">
+		  <div class="movie__img">
+			<img src=${movie.Poster} alt="">
+		  </div>
+		  <div class="movie__info">
+			<h3 class="movie__title">${movie.Title}</h3>
+			<div class="movie__details">
+			  <p class="time">${movie.Runtime}</p>
+			  <p class="type">${movie.Genre}</p>
+			  <button class="add-btn">
+				<i class="fa-solid fa-circle-plus"></i>
+				Add to watchlist
+			  </button>
+			</div>
+			<div class="movie__about">${movie.Plot}</div>
+		  </div>
+		</div>`
 	}
-}
+  }
 
 searchBtn.addEventListener('click', fetchMovies)
 document.addEventListener('click', e => {
