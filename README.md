@@ -1,6 +1,6 @@
 # WatchList-App-Vanilla-JS-API
 
-Vanilla JavaScript Movies Searching app
+Vanilla JavaScript Movies Searching app (desktop)
 
 Features: 
 - movie name, genre, plot, runtime and poster
